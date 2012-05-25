@@ -27,8 +27,7 @@ role :app, location
 role :web, location
 role :db,  location, :primary => true
 
-after 'deploy:update_code'
-#, 'deploy:symlink_db'
+after 'deploy:update_code', 'deploy:symlink_db'
 
 namespace :deploy do
 
@@ -46,11 +45,11 @@ end
 #   run "touch #{deploy_to}/#{shared_dir}/tmp/restart.txt"
 # end
 
-# desc "Symlinks the database.yml"
-# task :symlink_db, :roles => :app do
-#   run "ln -nfs #{deploy_to}/shared/config/database.yml
-#   #{release_path}/config/database.yml"
-# end
+desc "Symlinks the database.yml"
+task :symlink_db, :roles => :app do
+  run "ln -nfs #{deploy_to}/shared/config/database.yml
+  #{release_path}/config/database.yml"
+end
 
 
 # if you want to clean up old releases on each deploy uncomment this:

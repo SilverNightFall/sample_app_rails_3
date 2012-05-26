@@ -33,17 +33,17 @@ namespace :deploy do
 
 # If you are using Passenger mod_rails uncomment this:
 
-  task :start do ; end
-  task :stop do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-  end
-end
-
-# desc "Restart Application"
-# task :restart, :roles => :app do
-#   run "touch #{deploy_to}/#{shared_dir}/tmp/restart.txt"
+#   task :start do ; end
+#   task :stop do ; end
+#   task :restart, :roles => :app, :except => { :no_release => true } do
+#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+#   end
 # end
+
+desc "Restart Application"
+task :restart, :roles => :app do
+  run "touch #{deploy_to}/#{shared_dir}/tmp/restart.txt"
+end
 
 desc "Symlinks the database.yml"
 task :symlink_db, :roles => :app do

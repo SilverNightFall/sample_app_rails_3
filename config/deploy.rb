@@ -20,7 +20,7 @@ ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
 # The address of the remote host on EC2 (the Public DNS address)
-set :location, "rails.silvernightfall.com"
+set :location, "server.silvernightfall.com"
 
 # setup some Capistrano roles
 role :app, location

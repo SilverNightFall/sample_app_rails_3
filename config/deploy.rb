@@ -20,6 +20,7 @@ ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
 # The address of the remote host on EC2 (the Public DNS address)
+
 set :location, "23.23.206.95"
 
 # setup some Capistrano roles
@@ -31,15 +32,6 @@ after 'deploy:update_code', 'deploy:symlink_db'
 
 namespace :deploy do
 
-# If you are using Passenger mod_rails uncomment this:
-
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
-
 desc "Restart Application"
 task :restart, :roles => :app do
   run "touch #{deploy_to}/#{shared_dir}/tmp/restart.txt"
@@ -50,12 +42,5 @@ task :symlink_db, :roles => :app do
   run "ln -nfs #{deploy_to}/shared/config/database.yml
   #{release_path}/config/database.yml"
 end
-
-
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
 
 end

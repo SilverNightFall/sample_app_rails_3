@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 	gem 'execjs'
     gem 'therubyracer'
     gem 'mysql2'
+    gem 'bcrypt-ruby', '3.0.1'
 
 
 group :development, :test do
